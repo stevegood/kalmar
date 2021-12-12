@@ -22,6 +22,9 @@ cmd-test:
 cmd-setup:
 	${KALMAR_BIN} setup
 
+web-setup:
+	cd ${WEB_PATH} && yarn
+
 web-dev:
 	cd ${WEB_PATH} && yarn start
 
