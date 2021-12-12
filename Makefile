@@ -1,6 +1,8 @@
 BUILD_PATH=./build
 BIN_PATH=${BUILD_PATH}/bin
 KALMAR_BIN=${BIN_PATH}/kalmar
+CONFIG_PATH=./config
+GQLGEN_CONFIG_PATH=${CONFIG_PATH}/gqlgen.yml
 
 clean:
 	rm -rf ${BUILD_PATH}
@@ -23,3 +25,7 @@ test:
 
 test-verbose:
 	go test -v ./...
+
+gql-generate:
+	go get github.com/99designs/gqlgen/cmd
+	go run github.com/99designs/gqlgen generate --verbose --config ${GQLGEN_CONFIG_PATH}
