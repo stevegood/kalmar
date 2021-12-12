@@ -3,7 +3,6 @@ package server
 import (
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
@@ -11,13 +10,7 @@ import (
 	"github.com/stevegood/kalmar/pkg/server/graph/generated"
 )
 
-const defaultPort = "8080"
-
-func Exec() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = defaultPort
-	}
+func Exec(port string) {
 
 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
 

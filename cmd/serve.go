@@ -20,13 +20,15 @@ import (
 	"github.com/stevegood/kalmar/pkg/server"
 )
 
+const defaultGraphQLPort = "8080"
+
 // serveCmd represents the serve command
 var serveCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "Starts up the GraphQL server",
 	Long:  `Starts up the GraphQL server.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		server.Exec()
+		server.Exec(cmd.Flag("port").Value.String())
 	},
 }
 
@@ -42,4 +44,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// serveCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	serveCmd.Flags().StringP("port", "p", defaultGraphQLPort, "GraphQL server port")
 }
