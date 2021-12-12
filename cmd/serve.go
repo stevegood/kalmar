@@ -7,13 +7,13 @@ import (
 
 const defaultGraphQLPort = "8080"
 
-// serveCmd represents the serve command
 var serveCmd = &cobra.Command{
 	Use:   "serve",
 	Short: "Starts up the GraphQL server",
 	Long:  `Starts up the GraphQL server.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		server.Exec(cmd.Flag("port").Value.String())
+	RunE: func(cmd *cobra.Command, args []string) error {
+		port := cmd.Flag("port").Value.String()
+		return server.Exec(port)
 	},
 }
 
